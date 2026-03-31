@@ -1,0 +1,9 @@
+int variable1, variable2;
+float variable3;
+variable1 = 2;
+variable2 = variable1 * 3 + (variable1 / 2);
+while (variable2)
+    if (variable1)
+        variable1 = variable1 - 1;
+    else
+        variable2 = variable2 - 1;

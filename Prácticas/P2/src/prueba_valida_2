@@ -1,0 +1,7 @@
+float base, altura, _area;
+int iteraciones;
+base = 10.5;
+altura = 4.2;
+_area = (base * altura) / 2;
+while (iteraciones)
+    iteraciones = iteraciones - 1;

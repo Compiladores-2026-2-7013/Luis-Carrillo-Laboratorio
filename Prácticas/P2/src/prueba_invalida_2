@@ -1,0 +1,8 @@
+int contador, limite;
+contador = 0;
+limite = 100;
+while (limite)
+    if contador
+        contador = contador + 1;
+    else
+        limite = 0;

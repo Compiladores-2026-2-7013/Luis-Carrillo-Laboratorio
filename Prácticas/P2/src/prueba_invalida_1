@@ -1,0 +1,7 @@
+int x, y
+float z;
+x = 10;
+y = 20;
+z = x + y;
+while (x)
+    x = x - 1;
