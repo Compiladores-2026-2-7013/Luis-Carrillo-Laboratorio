@@ -1,0 +1,10 @@
+int i;
+i = 0;
+float j;      
+
+while (i + 10)
+    i = i + 1;
+    if i - 5  
+        j = 1;
+    else
+        j = 0;

@@ -1,0 +1,18 @@
+float v1, v2, v3, res;
+int flag, iterador;
+
+v1 = 3.1416;
+v2 = 2.7182;
+v3 = 1.6180;
+flag = 1;
+iterador = 0;
+
+res = (v1 * v2) + (v3 / (v1 - v2)) * (flag + 2);
+
+while (flag)
+    res = res - (v1 / v2);
+    if (res)
+        flag = 0;
+    else
+        flag = 1;
+        iterador = iterador + 1;

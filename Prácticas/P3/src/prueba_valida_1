@@ -1,0 +1,17 @@
+int i, j, max;
+float prom, suma;
+
+i = 0;
+j = 10;
+suma = 0.0;
+
+while (j - i)
+    suma = suma + i;
+    i = i + 1;
+
+if (suma - 100)
+    max = suma;
+    prom = suma / j;
+else
+    max = 0;
+    prom = 0.0;
