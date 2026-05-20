@@ -1,0 +1,10 @@
+int base, altura, area;
+float pi, radio, perimetro;
+
+base = 10;
+altura = 5;
+area = (base * altura) / 2;
+
+pi = 3.1416;
+radio = 2.5;
+perimetro = 2 * pi * radio;
