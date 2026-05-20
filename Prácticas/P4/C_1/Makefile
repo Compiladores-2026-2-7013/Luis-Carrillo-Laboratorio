@@ -1,17 +1,19 @@
-TARGET = compiler
+TARGET = compilador
 
 LEXER_IN = lexer.ll
 LEXER_OUT = Lexer.cpp
-MAIN_SRC = main.cpp
+PARSER_IN = gramatica.yy
+PARSER_OUT = Parser.cpp
 
 all: $(TARGET)
 
-$(TARGET): $(LEXER_IN) $(MAIN_SRC)
+$(TARGET): $(LEXER_IN) $(PARSER_IN)
+	bison -d $(PARSER_IN)
 	flex++ $(LEXER_IN)
-	g++ $(LEXER_OUT) $(MAIN_SRC) -o $(TARGET)
+	g++ $(PARSER_OUT) $(LEXER_OUT) -o $(TARGET)
 
 clean:
-	rm -f $(LEXER_OUT) $(TARGET)
+	rm -f $(LEXER_OUT) $(PARSER_OUT) Parser.hpp $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET) prueba

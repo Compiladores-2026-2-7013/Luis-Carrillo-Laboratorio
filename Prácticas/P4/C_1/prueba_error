@@ -1,12 +1,10 @@
 int a, b;
 float c;
+
 a = 5 + 3 * 2;
-b = (a - 1) / 2;
+b = (a - 1 / 2;  /* Falta cerrar el parentesis */
 
 if (a)
     c = 3.14;
 else
     c = 0.0;
-
-while (b)
-    b = b - 1;

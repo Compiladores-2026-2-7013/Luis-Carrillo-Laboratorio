@@ -1,28 +1,34 @@
 %{
 #include <iostream>
+#include <fstream>
 #include <string>
-#include "Lexer.hpp"
-
-#undef yylex
-#define yylex lexer.lex
-
-// Prototipo de la función de error
-void yyerror(const char *s);
-
+#include <FlexLexer.h>
 using namespace std;
 %}
 
-/* Configuración para generar una clase C++ */
-%skeleton "lalr1.cc"
+%language "C++"
 %require "3.2"
-%defines
+%defines "Parser.hpp"
+%output "Parser.cpp"
+ 
 %define api.parser.class {Parser}
-%define api.namespace {calc}
-%parse-param { calc::Lexer& lexer }
-%define parse.error detailed
-%expect 6
+%define api.namespace {C_1}
+%define parse.error verbose
+%parse-param {Lexer* lexer}
 
-/* Definición de los valores semánticos (yylval) */
+%code requires
+{
+    namespace C_1 {
+        class Lexer;
+    } // namespace C_1
+} // %code requires
+ 
+%code
+{
+ #include "Lexer.hpp"
+ #define yylex(x) lexer->lex(x) // Referencia a 1 en Lexer.hpp
+}
+
 %union {
     struct {
         int ival;
@@ -32,19 +38,15 @@ using namespace std;
     char* cadena;
 }
 
-/* Declaración de Terminales (Tokens) */
 %token <numero> NUM
 %token <cadena> ID
 %token INT FLOAT_KW IF ELSE WHILE
 %token PYC COMA IGUAL
 %token MAS MIN MUL DIV PARIZQ PARDER
 
-/* Símbolo inicial */
 %start programa
 
 %%
-
-/* REGLAS DE LA GRAMÁTICA */
 
 programa:
     declaraciones sentencias 
@@ -100,31 +102,26 @@ sentencia:
     { cout << "Regla: sentencia -> while ( expresion ) sentencias" << endl; }
     ;
 
-/* +expresion en tu gramática */
 suma_exp:
     mult_exp suma_exp_p
     ;
 
-/* +expresion' en tu gramática */
 suma_exp_p:
     MAS mult_exp suma_exp_p
     | MIN mult_exp suma_exp_p
     | /* epsilon */
     ;
 
-/* *expresion en tu gramática */
 mult_exp:
     atom_exp mult_exp_p
     ;
 
-/* *expresion' en tu gramática */
 mult_exp_p:
     MUL atom_exp mult_exp_p
     | DIV atom_exp mult_exp_p
     | /* epsilon */
     ;
 
-/* ()expresion en tu gramática */
 atom_exp:
     ID
     { cout << "Regla: ()expresion -> identificador" << endl; }
@@ -136,7 +133,26 @@ atom_exp:
 
 %%
 
-/* Definición de la función de error requerida por Bison */
-void calc::Parser::error(const std::string& msg) {
-    cerr << "Error sintáctico detectado: " << msg << endl;
+void C_1::Parser::error(const std::string& msg) {
+    std::cerr << "Error de sintaxis en la línea " << lexer->lineno() << ": " << msg << '\n';
+}
+
+
+#include <iostream>
+#include <string>
+#include <fstream>
+
+int main(int argc, char *argv[]){
+    if(argc < 2){
+        cout<<"Faltan argumentos "<<endl;
+        return EXIT_FAILURE;
+    }
+    filebuf fb;
+    fb.open(string(argv[1]), ios::in);
+    istream in(&fb);
+    C_1::Lexer lexer(&in);
+    C_1::Parser parser(&lexer);
+    parser.parse();
+    fb.close();
+    return 0;
 }

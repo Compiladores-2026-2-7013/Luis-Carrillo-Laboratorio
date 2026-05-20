@@ -1,0 +1,9 @@
+int x, y;
+x = 10;
+y = 0;
+
+if (x)
+    y = 1;
+
+while (x)
+    x = x - 1;

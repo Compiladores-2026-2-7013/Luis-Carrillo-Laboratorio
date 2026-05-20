@@ -1,0 +1,14 @@
+int contador, limite;
+int bandera;
+
+contador = 0;
+limite = 100;
+bandera = 1;
+
+while (limite - contador)
+    contador = contador + 1;
+
+if (bandera)
+    contador = 0;
+else
+    contador = limite;
