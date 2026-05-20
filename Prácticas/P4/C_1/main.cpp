@@ -15,9 +15,4 @@ int main(int argc, char *argv[]){
     istream in(&fb);
     
     return 0;
-    /*
-    C_1::Lexer scanner{ std::cin, std::cerr };
-    C_1::Parser parser{ &scanner };
-    //std::cout.precision(10);
-    parser.parse();*/
 }
