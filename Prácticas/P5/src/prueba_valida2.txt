@@ -1,0 +1,16 @@
+float temperatura;
+float humedad;
+float presion;
+register {
+    int id_sensor;
+    float valor_capturado;
+    int[3] flags_estado; 
+} sensor_principal;
+int[100] lecturas_historicas;
+def float promediar(int num_lecturas) { }
+def int actualizar_sensor(int nuevo_id, float nuevo_valor) { }
+register {
+    int x;
+    int y;
+    int z;
+} vector_3d;

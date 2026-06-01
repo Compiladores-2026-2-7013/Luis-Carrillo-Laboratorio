@@ -1,0 +1,23 @@
+int variable_global;
+float otra_variable;
+
+int[0] arreglo_malo;
+
+def float variable_global(int a) {
+    int b;
+}
+
+def int funcion_repetida(int x) {
+    int y;
+}
+
+def float funcion_repetida(float z) {
+    int w;
+}
+
+register {
+    int valid_1;
+    float valid_2;
+} struct_ok;
+
+int[5] struct_ok;

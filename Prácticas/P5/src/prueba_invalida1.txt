@@ -1,0 +1,21 @@
+int global_x, global_y, global_z;
+float a, b, c;
+
+int global_x;
+
+register {
+    int r1;
+    float r2;
+    int r1;
+} mi_registro;
+
+float mi_registro;
+
+def int funcion_test(int param1) {
+    int local_var;
+    float param2;
+    
+    int local_var;
+    
+    int param1; 
+}

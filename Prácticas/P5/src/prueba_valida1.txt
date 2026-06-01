@@ -1,0 +1,11 @@
+int a, b, c;
+float x, y;
+int[10] buffer;
+float[5] medidas;
+register {
+    int id;
+    float posX;
+    float posY;
+} enemigo1, enemigo2, enemigo3;
+def int procesar(int factor, float umbral) { }
+int estado_final;

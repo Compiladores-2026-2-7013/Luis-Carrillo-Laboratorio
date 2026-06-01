@@ -1,0 +1,5 @@
+int a, b, c;
+float x, y;
+int[5] arr;
+register { int rx; float ry; } punto, otro;
+def int suma(int n, float m) { }
